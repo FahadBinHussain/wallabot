@@ -80,4 +80,8 @@ This Python script is a Discord bot that extracts the title and saves a link to 
 
 1. Right-click the channel you want the bot to listen for messages, `Copy  ID`
 
+![image](https://user-images.githubusercontent.com/75292632/229358102-54975025-ad12-4ae2-a033-dffc6869029f.png)
+
 2. paste it into `.env` under `DISCORD_CHANNEL_ID`
+
+![image](https://user-images.githubusercontent.com/75292632/229358107-35e70dd0-f845-4da5-9bb9-ebde3161d299.png)
