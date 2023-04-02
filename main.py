@@ -15,30 +15,34 @@ WALLABAG_CLIENT_ID = os.getenv('CLIENT_ID')
 WALLABAG_CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 WALLABAG_USERNAME = os.getenv('USERNAME')
 WALLABAG_PASSWORD = os.getenv('PASSWORD')
-CHANNEL_ID = int(os.getenv('DISCORD_CHANNEL_ID'))
+DISCORD_CHANNEL_IDS = list(map(int, os.getenv('DISCORD_CHANNEL_IDS').split(',')))
 BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 
 # Function to save link to wallabag and return the wallabag link
 def save_link_to_wallabag(link):
-    # Use Wallabag API to save the link
-    response = requests.post('https://wallabag.nixnet.services/api/entries.json', data={
-        'url': link,
-        'access_token': WALLABAG_ACCESS_TOKEN
-    })
+    try:
+        # Use Wallabag API to save the link
+        response = requests.post('https://wallabag.nixnet.services/api/entries.json', data={
+            'url': link,
+            'access_token': WALLABAG_ACCESS_TOKEN
+        })
 
-    # Check if link was successfully saved in wallabag
-    # if response.status_code == 200:
-    #     return 'The request was successful, and the server has returned the requested data.'
-    
-    # Extract the wallabag link id from the API response
-    wallabag_link_id = response.json()['id']
-    patched_response = requests.patch('https://wallabag.nixnet.services/api/entries/{wallabag_link_id}.json'.format(wallabag_link_id=wallabag_link_id) , data={
+        # Check if link was successfully saved in wallabag
+        if response.status_code != 200:
+            raise Exception('Failed to save link to Wallabag')
 
-        'public': True,
-        'access_token': WALLABAG_ACCESS_TOKEN
+        # Extract the wallabag link id from the API response
+        wallabag_link_id = response.json()['id']
+        patched_response = requests.patch('https://wallabag.nixnet.services/api/entries/{wallabag_link_id}.json'.format(wallabag_link_id=wallabag_link_id) , data={
 
-    })
-    return patched_response.json()['uid']
+            'public': True,
+            'access_token': WALLABAG_ACCESS_TOKEN
+
+        })
+        return patched_response.json()['uid']
+    except Exception as e:
+        print('Error saving link to Wallabag:', e)
+        return None
 
     # see = patched_response.json()
     # print(see)
@@ -69,9 +73,9 @@ WALLABAG_ACCESS_TOKEN = response.json()['access_token']
 
 @client.event
 async def on_message(message):
-    # Check if message was sent by the bot itself or not in the specified channel
-    if message.author.id == client.user.id or message.channel.id != CHANNEL_ID:
-        return
+    # Check if message was sent by the bot itself or not in any of the specified channels
+    if message.author.id == client.user.id or message.channel.id not in DISCORD_CHANNEL_IDS:
+      return
 
     # Check if message contains a WSJ link
     pattern = r'\bhttps?:\/\/(?:www\.)?wsj\.com\/[^\s]+\b'

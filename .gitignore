@@ -1,0 +1,6 @@
+# Replit specific files/directories to ignore
+.replit
+*~
+.breakpoints
+venv/
+replit.nix
