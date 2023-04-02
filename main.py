@@ -11,10 +11,10 @@ intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
 # Information needed for wallabag API authentication
-WALLABAG_CLIENT_ID = os.getenv('WALLABAG_CLIENT_ID')
-WALLABAG_CLIENT_SECRET = os.getenv('WALLABAG_CLIENT_SECRET')
-WALLABAG_USERNAME = os.getenv('WALLABAG_USERNAME')
-WALLABAG_PASSWORD = os.getenv('WALLABAG_PASSWORD')
+WALLABAG_CLIENT_ID = os.getenv('CLIENT_ID')
+WALLABAG_CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+WALLABAG_USERNAME = os.getenv('USERNAME')
+WALLABAG_PASSWORD = os.getenv('PASSWORD')
 CHANNEL_ID = int(os.getenv('DISCORD_CHANNEL_ID'))
 BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 

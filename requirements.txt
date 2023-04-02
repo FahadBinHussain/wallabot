@@ -1,0 +1,4 @@
+discord==1.7.3
+beautifulsoup4==4.10.0
+dotenv==0.19.3
+requests==2.26.0
