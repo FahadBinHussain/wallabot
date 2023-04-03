@@ -3,6 +3,7 @@ import re
 import requests
 import os
 from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -20,6 +21,10 @@ BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 
 # Function to save link to wallabag and return the wallabag link
 def save_link_to_wallabag(link):
+    # Refresh the Wallabag access token if it's close to expiring
+    if WALLABAG_ACCESS_TOKEN_EXPIRATION - datetime.now() < timedelta(minutes=5):
+        refresh_wallabag_access_token()
+
     try:
         # Use Wallabag API to save the link
         response = requests.post('https://wallabag.nixnet.services/api/entries.json', data={
@@ -54,22 +59,29 @@ def get_article_title(url):
     title = soup.find('meta', {'property': 'og:title'})['content']
     return title
 
+def refresh_wallabag_access_token():
+    # Authenticate with Wallabag API to retrieve a new access token
+    response = requests.post('https://wallabag.nixnet.services/oauth/v2/token', data={
+        'grant_type': 'password',
+        'client_id': WALLABAG_CLIENT_ID,
+        'client_secret': WALLABAG_CLIENT_SECRET,
+        'username': WALLABAG_USERNAME,
+        'password': WALLABAG_PASSWORD
+    })
+
+    # Check if Wallabag API authentication was successful
+    if response.status_code != 200:
+        print('Failed to authenticate with Wallabag API')
+        exit()
+
+    # Extract the access token from the Wallabag API response
+    global WALLABAG_ACCESS_TOKEN
+    WALLABAG_ACCESS_TOKEN = response.json()['access_token']
+    global WALLABAG_ACCESS_TOKEN_EXPIRATION
+    WALLABAG_ACCESS_TOKEN_EXPIRATION = datetime.now() + timedelta(seconds=response.json()['expires_in'])
+
 # Authenticate with Wallabag API to retrieve token
-response = requests.post('https://wallabag.nixnet.services/oauth/v2/token', data={
-    'grant_type': 'password',
-    'client_id': WALLABAG_CLIENT_ID,
-    'client_secret': WALLABAG_CLIENT_SECRET,
-    'username': WALLABAG_USERNAME,
-    'password': WALLABAG_PASSWORD
-})
-
-# Check if Wallabag API authentication was successful
-if response.status_code != 200:
-    print('Failed to authenticate with Wallabag API')
-    exit()
-
-# Extract the access token from the Wallabag API response
-WALLABAG_ACCESS_TOKEN = response.json()['access_token']
+refresh_wallabag_access_token()
 
 @client.event
 async def on_message(message):
