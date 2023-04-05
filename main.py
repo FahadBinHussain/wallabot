@@ -90,20 +90,21 @@ async def on_message(message):
       return
 
     # Check if message contains a WSJ link
-    pattern = r'\bhttps?:\/\/(?:www\.)?wsj\.com\/[^\s]+\b'
-    if re.search(pattern, message.content):
-        link = re.findall(pattern, message.content)[0]
+    regex = [r'\bhttps?:\/\/(?:www\.)?nytimes\.com\/[^\s]+\b', r'\bhttps?:\/\/(?:www\.)?wsj\.com\/[^\s]+\b', r'\bhttps?:\/\/(?:www\.)?economist\.com\/[^\s]+\b', r'\bhttps?:\/\/(?:www\.)?businessinsider\.com\/[^\s]+\b', r'\bhttps?:\/\/(?:www\.)?ft\.com\/[^\s]+\b']
+    for pattern in regex:
+      if re.search(pattern, message.content):
+          link = re.findall(pattern, message.content)[0]
 
-        # Save link to Wallabag and retrieve Wallabag link
-        wallabag_public_url_end = save_link_to_wallabag(link)
-
-        wallabag_link = f"https://wallabag.nixnet.services/share/{wallabag_public_url_end}"
-
-        # Get the title of the article from the link
-        title = get_article_title(wallabag_link)
-
-        # Format and send the message
-        formatted_message = f":newspaper:  |  **{title}**\n\n{wallabag_link}"
-        await message.channel.send(formatted_message)
+          # Save link to Wallabag and retrieve Wallabag link
+          wallabag_public_url_end = save_link_to_wallabag(link)
+  
+          wallabag_link = f"https://wallabag.nixnet.services/share/{wallabag_public_url_end}"
+  
+          # Get the title of the article from the link
+          title = get_article_title(wallabag_link)
+  
+          # Format and send the message
+          formatted_message = f":newspaper:  |  **{title}**\n\n{wallabag_link}"
+          await message.channel.send(formatted_message)
 
 client.run(BOT_TOKEN)
