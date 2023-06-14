@@ -14,37 +14,33 @@ This Python script is a Discord bot that extracts the title and saves a link to 
 
 1. Go to https://discord.com/developers/applications create an application
 
-![image](https://user-images.githubusercontent.com/75292632/229356888-1afd8d63-ad2f-43f1-9969-100735f2b0f8.png)
+[![image-17.png](https://i.postimg.cc/rp6J7h8D/image-17.png)](https://postimg.cc/QFb1TJKD)
 
 2. Build a Discord bot under the application
 
-![image](https://user-images.githubusercontent.com/75292632/229356928-fa826d85-e135-4bbe-8899-9d1d6e6680d4.png)
+[![image.png](https://i.postimg.cc/zv5J5JDz/image.png)](https://postimg.cc/TL78JvWF)
 
-3. Get the token from bot setting
+3. Click Reset Token and then copy the token
 
-![image](https://user-images.githubusercontent.com/75292632/229357004-01ec6385-9b9d-45c3-a3ea-a6aba14754d4.png)
+[![image.png](https://i.postimg.cc/sgBCkBPP/image.png)](https://postimg.cc/18Zd63j4)
 
-4. Store the token to `.env` under the `DISCORD_BOT_TOKEN`
+4. Turn ALL INTENT `ON`
 
-![image](https://user-images.githubusercontent.com/75292632/229357198-27fd0fe6-e5ed-4c48-8d64-31577114bc03.png)
+[![image.png](https://i.postimg.cc/RF48ZqtD/image.png)](https://postimg.cc/3yf9L8nX)
 
-5. Turn ALL INTENT `ON`
+5. Invite your bot to your server via OAuth2 URL Generator
 
-![image](https://user-images.githubusercontent.com/75292632/229357231-c31d4b8f-f31a-4959-a615-862e8e6b720f.png)
-
-6. Invite your bot to your server via OAuth2 URL Generator
-
-![image](https://user-images.githubusercontent.com/75292632/229357269-09463d81-d109-49a8-b569-fdf2a2316b4c.png)
+[![image.png](https://i.postimg.cc/yd3PBHQb/image.png)](https://postimg.cc/ZBZ3F1h8)
 
 ## Step 2: Create a wallabag account
 
 1. Go to https://wallabag.nixnet.services/login and create account
 
-![image](https://user-images.githubusercontent.com/75292632/229357604-b05c5a99-75d3-409a-bd0f-d5d60d757740.png)
+[![image-28.png](https://i.postimg.cc/G90LR997/image-28.png)](https://postimg.cc/JHqVcrNZ)
 
 2. Store the Username and Password to `.env` under the `USERNAME` and `PASSWORD`
 
-![image](https://user-images.githubusercontent.com/75292632/229357690-146a9e02-6fdc-468a-8a19-188040d6ec8c.png)
+[![image.png](https://i.postimg.cc/hGGfpzmT/image.png)](https://postimg.cc/PCBXqq25)
 
 ## Step 3: Official API authentication
 
@@ -54,15 +50,15 @@ This Python script is a Discord bot that extracts the title and saves a link to 
 
 2. Click CREATE A NEW CLIENT
 
-![image](https://user-images.githubusercontent.com/75292632/229357730-a5825ce8-9104-4b36-8c1c-95f053c8f7d1.png)
+[![image.png](https://i.postimg.cc/Zn6RCrkt/image.png)](https://postimg.cc/q6M0F6Mj)
 
 3. Fill the Name of the client, Click CREATE A NEW CLIENT again
 
-![image](https://user-images.githubusercontent.com/75292632/229357758-f527df0b-2f30-4a8f-bf5c-8e7829c44097.png)
+[![image.png](https://i.postimg.cc/wjqvjy0Z/image.png)](https://postimg.cc/ppSx0TNJ)
 
 4. Store the Client ID and Client Secret to `.env` under the `CLIENT_ID` and `CLIENT_SECRET`
 
-![image](https://user-images.githubusercontent.com/75292632/229357831-df773463-978a-4332-858c-6e33d5a949cb.png)
+[![image.png](https://i.postimg.cc/3NQr5dkL/image.png)](https://postimg.cc/349Q2rCp)
 
 5. You're all set for [Step 3](#step-3-run-the-bot-on-the-desktop)
 
@@ -80,8 +76,8 @@ This Python script is a Discord bot that extracts the title and saves a link to 
 
 1. Right-click the channel you want the bot to listen for messages, `Copy  ID`
 
-![image](https://user-images.githubusercontent.com/75292632/229358102-54975025-ad12-4ae2-a033-dffc6869029f.png)
+[![image.png](https://i.postimg.cc/NGRf87nZ/image.png)](https://postimg.cc/c64S0Y0c)
 
 2. paste it into `.env` under `DISCORD_CHANNEL_ID`
 
-![image](https://user-images.githubusercontent.com/75292632/229358107-35e70dd0-f845-4da5-9bb9-ebde3161d299.png)
+[![image.png](https://i.postimg.cc/3JB8VrYB/image.png)](https://postimg.cc/YhvBmH4G)
