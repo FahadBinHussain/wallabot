@@ -9,3 +9,7 @@ pyproject.toml
 # Environments
 .env
 venv/
+
+# Other
+keep_alive.py
+keep_alive.cpython-310.pyc

@@ -23,6 +23,10 @@ BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 # Function to save link to Wallabag and return the Wallabag link
 def save_link_to_wallabag(link):
     # Refresh the Wallabag access token if it's close to expiring
+    if 'wsj.com' in link:
+      modified_link = re.sub(r'(https://www\.wsj\.com)/[^/]+/[^/]+(/.+)', r'\1/amp/articles\2', link)
+      link = modified_link
+      
     if WALLABAG_ACCESS_TOKEN_EXPIRATION - datetime.now() < timedelta(minutes=5):
         refresh_wallabag_access_token()
 
@@ -147,3 +151,4 @@ async def on_message(message):
 
 keep_alive()  # Starts a web server to keep the bot online.
 client.run(BOT_TOKEN)
+
