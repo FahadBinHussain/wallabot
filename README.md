@@ -1,6 +1,6 @@
 # Wallabot
 
-This Python script is a Discord bot that extracts the title and saves a link to Wallabag from WSJ (Wall Street Journal) articles shared in a specified channel.
+This Python script is a Discord bot that extracts the title and saves a link to Wallabag from article sites like Wall Street Journal, New York Times, The Economist, Business Insider, Financial Times etc. shared in a specified channel.
 
 # Setup
 
