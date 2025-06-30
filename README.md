@@ -1,5 +1,9 @@
 # Wallabot
 
+<img src="https://wakapi-qt1b.onrender.com/api/badge/fahad/interval:any/project:wallabot" 
+     alt="Wakapi Time Tracking" 
+     title="Spent more than that amount of time spent on this project">
+
 This Python script is a Discord bot that extracts the title and saves a link to Wallabag from article sites like Wall Street Journal, New York Times, The Economist, Business Insider, Financial Times etc. shared in a specified channel.
 
 # Setup
