@@ -85,3 +85,9 @@ This Python script is a Discord bot that extracts the title and saves a link to 
 2. paste it into `.env` under `DISCORD_CHANNEL_ID`
 
 [![image.png](https://i.postimg.cc/3JB8VrYB/image.png)](https://postimg.cc/YhvBmH4G)
+
+## Contributors
+
+<a href="https://github.com/FahadBinHussain/wallabot/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=FahadBinHussain/wallabot" alt="Contributors" />
+</a>
